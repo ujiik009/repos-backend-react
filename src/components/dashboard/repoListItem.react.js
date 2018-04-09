@@ -23,7 +23,8 @@ export default class RepoListItem extends React.Component{
             open_issues_count,
             forks_count,
             watchers_count,
-            organization = {}
+            organization = {},
+            html_url
          } = this.state.repository
 
          return (
@@ -37,7 +38,7 @@ export default class RepoListItem extends React.Component{
                     <div className="media-content">
                         <div className="content">
                             <p>
-                                <strong><a className="title" href="#/frontend-war-react/facebook/react">
+                                <strong><a className="title" href={html_url} target="_blank">
                                 { full_name }
                                 </a></strong>
                             </p>
