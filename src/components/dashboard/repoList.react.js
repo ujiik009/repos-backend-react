@@ -4,6 +4,11 @@ export default class RepoList extends React.Component{
     state = {
         repos:this.props.repos
     }
+
+    constructor(props){
+        super(props)
+        this.props.repos.reverse()
+    }
     render() {
       return (
         <div>
