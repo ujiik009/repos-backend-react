@@ -1,6 +1,7 @@
 import React from "react";
 import {fetchRepository} from '../../api/api'
-export default class RepoListItem extends React.Component{
+import {connect} from 'react-redux'
+class RepoListItem extends React.Component{
 
     state = {
         repository: {},
@@ -8,11 +9,13 @@ export default class RepoListItem extends React.Component{
     }
 
     componentDidMount () {
+        console.log("componentDidMount")
       fetchRepository(this.props.repoName).then((resRepo)=>{
         this.setState({ 
             repository: resRepo
         })
       })
+      
     }
     
     render() {
@@ -28,7 +31,8 @@ export default class RepoListItem extends React.Component{
          } = this.state.repository
 
          return (
-            <div className="box">
+             
+            <div className="box" onLoad={()=>this.props.addRepo({"repoName":full_name,"star":stargazers_count})}>                 
                 <article className="media">
                     <div className="media-left">
                         <figure className="image is-64x64">
@@ -79,5 +83,31 @@ export default class RepoListItem extends React.Component{
                 </nav>
             </div>
         )
+        
     }
 }
+
+const mapStateToProps=(state)=>{
+    return {
+        Dashboard:state
+    }
+}
+const mapDispatchStateToProps=(dispatch)=>{
+    return {
+        addRepo:(objRepo)=>{
+            dispatch({
+                type:"addRepo",
+                payload:objRepo
+            })
+        },
+        removeRepo:(indexRepo)=>{
+            dispatch({
+                type:"removeRepo",
+                payload:indexRepo
+            })
+        }
+    }
+    
+}
+
+export default connect(mapStateToProps,mapDispatchStateToProps)(RepoListItem)

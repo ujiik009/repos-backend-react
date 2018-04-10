@@ -19,4 +19,5 @@ function fetchGitHubAPIWithPath(path) {
   // also including `pull_requests_count` field
   export function fetchRepository(scopeName) {
     return fetchGitHubAPIWithPath(`/repos/${scopeName}`)
+    
   }

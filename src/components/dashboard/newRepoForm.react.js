@@ -51,7 +51,7 @@ export default class NewRepoForm extends React.Component{
                     {
                         this.state.repos.map((repo,index)=>{
                             return (
-                                <div className="tile is-parent" onDoubleClick={this.removeRepo.bind(this,index)}>
+                                <div className="tile is-parent" key={index} onDoubleClick={this.removeRepo.bind(this,index)}>
                                     <article className="tile is-child box is-primary">
                                     <p className="title">{index+1} {repo}</p>                                   
                                     </article>
@@ -73,7 +73,7 @@ export default class NewRepoForm extends React.Component{
                     <SweetAlert
                         show={this.state.alertShow}
                         type="error"
-                        title="Enter Repo Name"
+                        title="Enter Repository Name"
                         text=""
                         onConfirm={() => this.setState({ alertShow: false })}
                     />
