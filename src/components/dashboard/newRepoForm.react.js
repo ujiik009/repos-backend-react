@@ -1,10 +1,12 @@
-import React from 'react'
-import RepoList from './repoList.react'
+import React from 'react';
+import RepoList from './repoList.react';
+import SweetAlert from 'sweetalert-react';
 export default class NewRepoForm extends React.Component{
 
     state = {
         repos:["symfony/symfony","laravel/laravel","phalcon/cphalcon"],
-        repoText:""
+        repoText:"",
+        alertShow:false
     }
 
     handleChange = (event)=>{
@@ -14,8 +16,14 @@ export default class NewRepoForm extends React.Component{
     }
 
     handleKeyPress = (event) =>{
-        if(event.keyCode == 13){
-           this.addRepo();
+        if(event.keyCode === 13){
+            if(this.state.repoText === ""){
+                this.setState({
+                    alertShow:true
+                })
+            }else{
+                this.addRepo();
+            }
         }
     }
 
@@ -44,7 +52,7 @@ export default class NewRepoForm extends React.Component{
                         this.state.repos.map((repo,index)=>{
                             return (
                                 <div className="tile is-parent" onDoubleClick={this.removeRepo.bind(this,index)}>
-                                    <article className="tile is-child box">
+                                    <article className="tile is-child box is-primary">
                                     <p className="title">{index+1} {repo}</p>                                   
                                     </article>
                                 </div>
@@ -62,6 +70,13 @@ export default class NewRepoForm extends React.Component{
 
 
                     <RepoList repos={this.state.repos}/>
+                    <SweetAlert
+                        show={this.state.alertShow}
+                        type="error"
+                        title="Enter Repo Name"
+                        text=""
+                        onConfirm={() => this.setState({ alertShow: false })}
+                    />
                 
             </div>
         )
