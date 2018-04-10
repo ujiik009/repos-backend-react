@@ -48,7 +48,7 @@ export default class NewRepoForm extends React.Component{
         return (
             <div className="section">
                 <div className="tile is-ancestor">                    
-                    {
+                    {/* {
                         this.state.repos.map((repo,index)=>{
                             return (
                                 <div className="tile is-parent" key={index} onDoubleClick={this.removeRepo.bind(this,index)}>
@@ -58,7 +58,7 @@ export default class NewRepoForm extends React.Component{
                                 </div>
                             )
                         })
-                    }                   
+                    }                    */}
                 </div>
                                         
                     <div className="field">
