@@ -32,7 +32,7 @@ class RepoListItem extends React.Component{
 
          return (
              
-            <div className="box" onLoad={()=>this.props.addRepo({"repoName":full_name,"star":stargazers_count})}>                 
+            <div className="box" onLoad={()=>this.props.addRepo({"repoName":full_name,"star":stargazers_count,"forks_count":forks_count})}>                 
                 <article className="media">
                     <div className="media-left">
                         <figure className="image is-64x64">
