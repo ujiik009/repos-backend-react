@@ -4,7 +4,8 @@ import SweetAlert from 'sweetalert-react';
 export default class NewRepoForm extends React.Component{
 
     state = {
-        repos:["symfony/symfony","laravel/laravel","phalcon/cphalcon"],
+        // repos:["symfony/symfony","laravel/laravel","phalcon/cphalcon"],
+        repos:["facebook/react","Polymer/polymer","vuejs/vue","angular/angular"],
         repoText:"",
         alertShow:false
     }

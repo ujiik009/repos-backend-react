@@ -5,11 +5,15 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recha
 
 // var LineChart = require("react-chartjs").Line;
 class Dashboard extends React.Component{
-    
+
+    handlePicker = (event)=>{
+        alert(6666)
+    }
+          
     render() {
         const data = this.props.Dashboard.Repos
         return (
-            <div className="section">
+            <div className="section">                    
                     <center>
                         <BarChart width={750} height={450} data={data}
                                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>

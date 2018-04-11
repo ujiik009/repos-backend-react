@@ -27,7 +27,8 @@ class RepoListItem extends React.Component{
             forks_count,
             watchers_count,
             organization = {},
-            html_url
+            html_url,
+            homepage
          } = this.state.repository
 
          return (
@@ -42,7 +43,7 @@ class RepoListItem extends React.Component{
                     <div className="media-content">
                         <div className="content">
                             <p>
-                                <strong><a className="title" href={html_url} target="_blank">
+                                <strong><a className="title" href={homepage} target="_blank">
                                 { full_name }
                                 </a></strong>
                             </p>
