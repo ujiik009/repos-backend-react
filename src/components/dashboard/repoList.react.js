@@ -13,9 +13,7 @@ export default class RepoList extends React.Component{
         <div>          
           {                         
             this.props.repos.map((repoName,index)=>{
-        
-                return <RepoListItem key={repoName} repoName={repoName}/>
-                                
+                return <RepoListItem key={repoName} repoName={repoName}/>                                
             })
           }
         </div>

@@ -1,7 +1,19 @@
 import React from 'react'
 import './header.css'
 export default class Header extends React.Component{
+
+    state = {
+        value : 0
+    }
+
+    heandleChen = (event)=>{
+        this.setState({
+            value:event.target.value
+        })
+    }
+
     render() {
+    
         return (
                       
             <div className="section">

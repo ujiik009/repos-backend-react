@@ -7,11 +7,10 @@ class App extends Component {
       <div className="App">
         <div className="container">
             <Header/>
-            <Dashboard/>      
+            <Dashboard/>                
         </div>
       </div>
     );
   }
 }
-
 export default App;
