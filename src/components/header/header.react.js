@@ -17,8 +17,11 @@ export default class Header extends React.Component{
         return (
                       
             <div className="section">
-                <h1><a className="title is-1" ><span className="word-start">Source</span>Work BackEnd War</a></h1>
-                <h2 className="subtitle is-3">Hero of BackEnd</h2>
+                <center>
+                    <h1><a className="title is-1" ><span className="word-start">Source</span>Work</a></h1>
+                    
+                    <h2 className="subtitle is-3">FrontEnd War Hero of FrontEnd</h2>
+                </center>
             </div>
              
         )

@@ -1,11 +1,11 @@
 import React from 'react';
 import RepoList from './repoList.react';
 import SweetAlert from 'sweetalert-react';
-export default class NewRepoForm extends React.Component{
+import { connect } from "react-redux";
+class NewRepoForm extends React.Component{
 
     state = {
-        // repos:["symfony/symfony","laravel/laravel","phalcon/cphalcon"],
-        repos:["facebook/react","Polymer/polymer","vuejs/vue","angular/angular"],
+        repos:["symfony/symfony","laravel/laravel","phalcon/cphalcon"],
         repoText:"",
         alertShow:false
     }
@@ -29,37 +29,31 @@ export default class NewRepoForm extends React.Component{
     }
 
     addRepo = ()=>{
-        this.setState({
-            repos:this.state.repos.concat(this.state.repoText),
+        
+        this.props.addinitRepo(this.state.repoText)
+        this.setState({           
             repoText:""
         })
+
         
     }
 
     removeRepo = (index)=>{
        
-        const curRepo = this.state.repos;
-        curRepo.splice(index,1);
-        this.setState({
-            repos:curRepo
-        })
+        // const curRepo = this.state.repos;
+        // curRepo.splice(index,1);
+        // this.setState({
+        //     repos:curRepo
+        // })
+
+        this.props.removeinitRepo(index);
     }
 
     render() {
         return (
             <div className="section">
                 <div className="tile is-ancestor">                    
-                    {/* {
-                        this.state.repos.map((repo,index)=>{
-                            return (
-                                <div className="tile is-parent" key={index} onDoubleClick={this.removeRepo.bind(this,index)}>
-                                    <article className="tile is-child box is-primary">
-                                    <p className="title">{index+1} {repo}</p>                                   
-                                    </article>
-                                </div>
-                            )
-                        })
-                    }                    */}
+                    
                 </div>
                                         
                     <div className="field">
@@ -70,7 +64,7 @@ export default class NewRepoForm extends React.Component{
                     </div>
 
 
-                    <RepoList repos={this.state.repos}/>
+                    <RepoList repos={this.props.Dashboard.initRepo}/>
                     <SweetAlert
                         show={this.state.alertShow}
                         type="error"
@@ -81,5 +75,38 @@ export default class NewRepoForm extends React.Component{
                 
             </div>
         )
+
+        
+    }// method render
+    
+    
+    
+    
+}// end class
+    const mapStateToProps=(state)=>{
+        return {
+            Dashboard:state
+        }
     }
-}
+
+    const mapDispatchStateToProps=(dispatch)=>{
+        return {
+            addinitRepo:(repoName)=>{
+                dispatch({
+                    type:"addinitRepo",
+                    payload:repoName
+                })
+            },
+            removeinitRepo:(indexRepo)=>{
+                dispatch({
+                    type:"removeinitRepo",
+                    payload:indexRepo
+                })
+            }        
+        }
+        
+    }
+
+export default connect(mapStateToProps,mapDispatchStateToProps)(NewRepoForm)
+
+

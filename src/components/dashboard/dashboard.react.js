@@ -1,13 +1,26 @@
 import React from 'react'
 import NewRepoForm  from "./newRepoForm.react";
 import {connect} from 'react-redux';
+import SweetAlert from 'sweetalert-react';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
 
 // var LineChart = require("react-chartjs").Line;
 class Dashboard extends React.Component{
 
+    state = {
+        alertShow:false,
+        tempIndex:null
+    }
     handlePicker = (event)=>{
         alert(6666)
+    }
+
+    removeConfirm = (tempIndex)=>{
+        // alert(tempIndex)
+        this.setState({
+            tempIndex:tempIndex,
+            alertShow:true
+        })
     }
           
     render() {
@@ -23,28 +36,31 @@ class Dashboard extends React.Component{
                         <Tooltip/>
                         <Legend />
                         <Bar dataKey="star" fill="#55dba1" onClick={()=>{alert(data.index)}}/>
-                        <Bar dataKey="forks_count" fill="#f4d592" onClick={()=>{alert(data.index)}}/>
+                        <Bar dataKey="forks_count" fill="#f4d592" onClick={()=>{}}/>
                         </BarChart>
                     </center>
 
-                <div className="tile is-ancestor">    
                     {
                         this.props.Dashboard.Repos.map((repo,index)=>{
-                            return (                               
-                                <div className="tile is-parent" key={index}  >
-                                    <article className="tile is-child box is-primary" onDoubleClick={()=>{this.props.removeRepo(index)}}>
-                                    <p className="title">{index+1} {repo.repoName}</p>                                   
-                                    </article>
-                                </div>
+                            return (                                                       
+                                // <div className="tile is-ancestor">    
+                                    <span className="tag is-warning is-large list-tag" key={index}>
+                                        {index+1} {repo.repoName}
+                                        <button className="delete" onClick={()=>{this.removeConfirm(index)}}></button>
+                                    </span>
+                                    
+                                // </div>                 
                             )
                         })
                     }
-                 </div>
-                 
-                    <NewRepoForm/>
-                 
-                 
-                 {/* <a className="button is-primary" onClick={()=>{this.props.addRepo({"repoName":"Dashboard","star":100})}}>Primary</a> */}
+                <NewRepoForm/>
+                <SweetAlert
+                        show={this.state.alertShow}
+                        type="warning"
+                        title="Are you sure you want to delete this Repository?"
+                        text=""
+                        onConfirm={() => {this.props.removeRepo(this.state.tempIndex);this.setState({alertShow:false,tempIndex:null})} }
+                    />
              </div>
         );
     }

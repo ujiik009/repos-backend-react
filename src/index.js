@@ -8,7 +8,9 @@ import registerServiceWorker from './registerServiceWorker';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux'
 const initState = {
-    Repos:[]
+    Repos:[],
+    initRepo:["Polymer/polymer","vuejs/vue","angular/angular","facebook/react"]
+    // initRepo:[]
 }
 
 const DashboardRecuder  = (state=initState,action) =>{
@@ -23,13 +25,21 @@ const DashboardRecuder  = (state=initState,action) =>{
 
         case "removeRepo":
             let curRepo = state.Repos;
+            let curinitRepo = state.initRepo;
+            curinitRepo.splice(action.payload,1);
             curRepo.splice(action.payload,1);
             state = {
                 ...state,
-                Repos:curRepo
+                Repos:curRepo,
+                initRepo:curinitRepo
             }
             break;    
-    
+        case "addinitRepo":
+            state = {
+                ...state,
+                initRepo:state.initRepo.concat(action.payload)
+            }
+            break;    
         default:
             break;
     }
@@ -39,7 +49,9 @@ const DashboardRecuder  = (state=initState,action) =>{
 
 const store = createStore((DashboardRecuder));
 store.subscribe(()=>{    
-    console.log( JSON.stringify(store.getState()));
+    // console.log( JSON.stringify(store.getState()));
+    console.log(store.getState());
+    
  });
 
 //  store.dispatch({

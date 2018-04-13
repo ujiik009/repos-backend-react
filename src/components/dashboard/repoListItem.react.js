@@ -27,7 +27,6 @@ class RepoListItem extends React.Component{
             forks_count,
             watchers_count,
             organization = {},
-            html_url,
             homepage
          } = this.state.repository
 
@@ -77,8 +76,8 @@ class RepoListItem extends React.Component{
                     </div>
                     <div className="level-item has-text-centered">
                         <div>
-                        <p className="heading">Watchers</p>
-                        <p className="title">{ watchers_count }</p>
+                            <p className="heading">Watchers</p>
+                            <p className="title">{ watchers_count }</p>
                         </div>
                     </div>
                 </nav>

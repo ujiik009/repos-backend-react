@@ -6,7 +6,11 @@ function fetchGitHubAPIWithPath(path) {
       "Authorization": `token fbedabf134e561e8515b0c939d4f7b7b17f749ff`
     })
     return fetch(`https://api.github.com${path}`, { headers }).then( res => res.json() )
-  }
+}
+
+export function fetchPeople(){
+    return fetch("https://demo.vaadin.com/demo-data/1.0/people?count=1000").then(res=>res.json() )
+}
   
   
   // -
@@ -21,3 +25,4 @@ function fetchGitHubAPIWithPath(path) {
     return fetchGitHubAPIWithPath(`/repos/${scopeName}`)
     
   }
+

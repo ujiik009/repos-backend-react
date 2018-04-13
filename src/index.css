@@ -9,3 +9,10 @@ body {
 .center{
   text-align: center;
 }
+.tag{
+  height: 2em;
+  margin-left: 3px;
+}
+.list-tag{
+  margin-top: 10px;
+}
